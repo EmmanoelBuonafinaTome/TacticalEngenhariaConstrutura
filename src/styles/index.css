@@ -9,11 +9,19 @@
 
 .projects-carousel .slick-list {
   overflow: hidden;
-  margin: 0 -4px;
+}
+
+.projects-carousel .slick-track {
+  display: flex !important;
+  align-items: stretch;
+}
+
+.projects-carousel .slick-slide {
+  height: auto;
 }
 
 .projects-carousel .slick-slide > div {
-  padding: 0 4px;
+  height: 100%;
 }
 
 .projects-carousel .slick-prev,
@@ -21,6 +29,7 @@
   width: auto;
   height: auto;
   z-index: 10;
+  transform: translateY(-50%);
 }
 
 .projects-carousel .slick-prev::before,
@@ -29,15 +38,15 @@
 }
 
 .projects-carousel .slick-prev {
-  left: 8px;
+  left: 12px;
 }
 
 .projects-carousel .slick-next {
-  right: 8px;
+  right: 12px;
 }
 
 .projects-carousel .slick-dots {
-  bottom: -32px;
+  bottom: -36px;
 }
 
 .projects-carousel .slick-dots li button::before {
@@ -49,4 +58,22 @@
 .projects-carousel .slick-dots li.slick-active button::before {
   opacity: 1;
   color: #2563eb;
+}
+
+@media (max-width: 767px) {
+  .projects-carousel .slick-slide {
+    width: 100% !important;
+  }
+
+  .projects-carousel .slick-prev,
+  .projects-carousel .slick-next {
+    top: 112px;
+  }
+}
+
+@media (min-width: 768px) {
+  .projects-carousel .slick-prev,
+  .projects-carousel .slick-next {
+    top: 128px;
+  }
 }

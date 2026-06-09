@@ -1,8 +1,12 @@
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import { useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from './ui/carousel';
 
 interface Project {
   id: number;
@@ -50,64 +54,38 @@ const projects: Project[] = [
   }
 ];
 
-function NextArrow(props: any) {
-  const { onClick } = props;
-  return (
-    <button
-      onClick={onClick}
-      className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white p-2 rounded-full shadow-lg transition-all"
-      aria-label="Próximo"
-    >
-      <ChevronRight className="w-6 h-6 text-blue-600" />
-    </button>
-  );
-}
-
-function PrevArrow(props: any) {
-  const { onClick } = props;
-  return (
-    <button
-      onClick={onClick}
-      className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white p-2 rounded-full shadow-lg transition-all"
-      aria-label="Anterior"
-    >
-      <ChevronLeft className="w-6 h-6 text-blue-600" />
-    </button>
-  );
-}
-
 export function ProjectsCarousel() {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 4000,
-    pauseOnHover: true,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-    responsive: [
-      {
-        breakpoint: 1280,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        }
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        }
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    if (!api) return;
+
+    const onSelect = () => setCurrent(api.selectedScrollSnap());
+    onSelect();
+    api.on('select', onSelect);
+
+    return () => {
+      api.off('select', onSelect);
+    };
+  }, [api]);
+
+  useEffect(() => {
+    if (!api) return;
+
+    const interval = setInterval(() => {
+      if (api.canScrollNext()) {
+        api.scrollNext();
+      } else {
+        api.scrollTo(0);
       }
-    ]
-  };
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [api]);
 
   return (
-    <section id="projetos" className="py-16 md:py-24 bg-gray-50">
+    <section id="projetos" className="py-16 md:py-24 bg-gray-50 overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl mb-4 text-gray-900">
@@ -119,30 +97,70 @@ export function ProjectsCarousel() {
         </div>
 
         <div className="max-w-7xl mx-auto">
-          <Slider {...settings}>
-            {projects.map((project) => (
-              <div key={project.id} className="px-3">
-                <div className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                  <div className="relative h-64 overflow-hidden">
-                    <ImageWithFallback
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
-                    />
+          <Carousel
+            setApi={setApi}
+            opts={{ loop: true, align: 'start' }}
+            className="relative"
+          >
+            <CarouselContent className="-ml-2 md:-ml-4">
+              {projects.map((project) => (
+                <CarouselItem
+                  key={project.id}
+                  className="pl-2 md:pl-4 basis-full md:basis-1/2 xl:basis-1/3"
+                >
+                  <div className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                    <div className="relative h-64 overflow-hidden">
+                      <ImageWithFallback
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                      />
+                    </div>
+                    <div className="p-6">
+                      <h3 className="text-xl mb-2 text-gray-900">
+                        {project.title}
+                      </h3>
+                      <p className="text-sm text-blue-600 mb-3">{project.location}</p>
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        {project.description}
+                      </p>
+                    </div>
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-xl mb-2 text-gray-900">
-                      {project.title}
-                    </h3>
-                    <p className="text-sm text-blue-600 mb-3">{project.location}</p>
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                      {project.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </Slider>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+
+            <button
+              type="button"
+              onClick={() => api?.scrollPrev()}
+              className="absolute left-2 sm:left-4 top-32 -translate-y-1/2 z-10 bg-white/90 hover:bg-white p-2 rounded-full shadow-lg transition-all"
+              aria-label="Anterior"
+            >
+              <ChevronLeft className="w-6 h-6 text-blue-600" />
+            </button>
+            <button
+              type="button"
+              onClick={() => api?.scrollNext()}
+              className="absolute right-2 sm:right-4 top-32 -translate-y-1/2 z-10 bg-white/90 hover:bg-white p-2 rounded-full shadow-lg transition-all"
+              aria-label="Próximo"
+            >
+              <ChevronRight className="w-6 h-6 text-blue-600" />
+            </button>
+
+            <div className="flex justify-center gap-2 mt-6">
+              {projects.map((_, index) => (
+                <button
+                  key={index}
+                  type="button"
+                  onClick={() => api?.scrollTo(index)}
+                  className={`w-2 h-2 rounded-full transition-colors ${
+                    index === current ? 'bg-blue-600' : 'bg-gray-300'
+                  }`}
+                  aria-label={`Ir para o slide ${index + 1}`}
+                />
+              ))}
+            </div>
+          </Carousel>
         </div>
       </div>
     </section>

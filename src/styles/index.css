@@ -1,3 +1,52 @@
 @import './fonts.css';
 @import './tailwind.css';
 @import './theme.css';
+
+/* Ajustes do carrossel para mobile */
+.projects-carousel .slick-slider {
+  overflow: hidden;
+}
+
+.projects-carousel .slick-list {
+  overflow: hidden;
+  margin: 0 -4px;
+}
+
+.projects-carousel .slick-slide > div {
+  padding: 0 4px;
+}
+
+.projects-carousel .slick-prev,
+.projects-carousel .slick-next {
+  width: auto;
+  height: auto;
+  z-index: 10;
+}
+
+.projects-carousel .slick-prev::before,
+.projects-carousel .slick-next::before {
+  display: none;
+}
+
+.projects-carousel .slick-prev {
+  left: 8px;
+}
+
+.projects-carousel .slick-next {
+  right: 8px;
+}
+
+.projects-carousel .slick-dots {
+  bottom: -32px;
+}
+
+.projects-carousel .slick-dots li button::before {
+  font-size: 8px;
+  color: #2563eb;
+  opacity: 0.4;
+}
+
+.projects-carousel .slick-dots li.slick-active button::before {
+  opacity: 1;
+  color: #2563eb;
+}

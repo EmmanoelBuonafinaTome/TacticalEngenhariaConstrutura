@@ -3,7 +3,7 @@ import { CheckCircle } from 'lucide-react';
 
 export function Hero() {
   return (
-    <section className="relative bg-gradient-to-br from-blue-600 to-blue-800 text-white py-20 md:py-32 overflow-hidden">
+    <section className="relative bg-gradient-to-br from-blue-600 to-blue-800 text-white py-12 sm:py-20 md:py-32 overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
@@ -18,7 +18,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-4xl md:text-5xl lg:text-6xl mb-6"
+            className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 sm:mb-6"
           >
             Transformamos seus sonhos em realidade
           </motion.h2>
@@ -27,7 +27,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl md:text-2xl mb-8 text-blue-100"
+            className="text-base sm:text-xl md:text-2xl mb-6 sm:mb-8 text-blue-100"
           >
             Mais de 20 anos de experiência em construção civil, entregando qualidade e confiança em cada projeto.
           </motion.p>

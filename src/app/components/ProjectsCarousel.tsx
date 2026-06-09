@@ -50,28 +50,30 @@ const projects: Project[] = [
   }
 ];
 
-function NextArrow(props: any) {
+function NextArrow(props: { onClick?: () => void }) {
   const { onClick } = props;
   return (
     <button
+      type="button"
       onClick={onClick}
-      className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white p-2 rounded-full shadow-lg transition-all"
+      className="!flex items-center justify-center !w-9 !h-9 sm:!w-10 sm:!h-10 !right-2 sm:!right-4 z-10 bg-white/90 hover:bg-white rounded-full shadow-lg transition-all before:!content-none"
       aria-label="Próximo"
     >
-      <ChevronRight className="w-6 h-6 text-blue-600" />
+      <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
     </button>
   );
 }
 
-function PrevArrow(props: any) {
+function PrevArrow(props: { onClick?: () => void }) {
   const { onClick } = props;
   return (
     <button
+      type="button"
       onClick={onClick}
-      className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white p-2 rounded-full shadow-lg transition-all"
+      className="!flex items-center justify-center !w-9 !h-9 sm:!w-10 sm:!h-10 !left-2 sm:!left-4 z-10 bg-white/90 hover:bg-white rounded-full shadow-lg transition-all before:!content-none"
       aria-label="Anterior"
     >
-      <ChevronLeft className="w-6 h-6 text-blue-600" />
+      <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
     </button>
   );
 }
@@ -107,34 +109,34 @@ export function ProjectsCarousel() {
   };
 
   return (
-    <section id="projetos" className="py-16 md:py-24 bg-gray-50">
+    <section id="projetos" className="py-10 md:py-24 bg-gray-50 overflow-hidden">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl mb-4 text-gray-900">
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-3 md:mb-4 text-gray-900">
             Nossos Projetos
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
             Conheça alguns dos empreendimentos que transformaram sonhos em realidade
           </p>
         </div>
 
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto projects-carousel">
           <Slider {...settings}>
             {projects.map((project) => (
-              <div key={project.id} className="px-3">
+              <div key={project.id} className="px-1 sm:px-3">
                 <div className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                  <div className="relative h-64 overflow-hidden">
+                  <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
                     <ImageWithFallback
                       src={project.image}
                       alt={project.title}
                       className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
                     />
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-xl mb-2 text-gray-900">
+                  <div className="p-4 sm:p-6">
+                    <h3 className="text-lg sm:text-xl mb-1 sm:mb-2 text-gray-900 font-semibold">
                       {project.title}
                     </h3>
-                    <p className="text-sm text-blue-600 mb-3">{project.location}</p>
+                    <p className="text-sm text-blue-600 mb-2 sm:mb-3">{project.location}</p>
                     <p className="text-gray-600 text-sm leading-relaxed">
                       {project.description}
                     </p>

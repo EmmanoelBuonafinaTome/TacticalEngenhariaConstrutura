@@ -1,31 +1,8 @@
-import { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-
-function useSlidesToShow() {
-  const [slidesToShow, setSlidesToShow] = useState(1);
-
-  useEffect(() => {
-    const update = () => {
-      if (window.innerWidth >= 1280) {
-        setSlidesToShow(3);
-      } else if (window.innerWidth >= 768) {
-        setSlidesToShow(2);
-      } else {
-        setSlidesToShow(1);
-      }
-    };
-
-    update();
-    window.addEventListener('resize', update);
-    return () => window.removeEventListener('resize', update);
-  }, []);
-
-  return slidesToShow;
-}
 
 interface Project {
   id: number;
@@ -73,79 +50,91 @@ const projects: Project[] = [
   }
 ];
 
-function NextArrow(props: { onClick?: () => void }) {
+function NextArrow(props: any) {
   const { onClick } = props;
   return (
     <button
-      type="button"
       onClick={onClick}
-      className="!flex items-center justify-center !w-9 !h-9 sm:!w-10 sm:!h-10 !right-2 sm:!right-4 z-10 bg-white/90 hover:bg-white rounded-full shadow-lg transition-all before:!content-none"
+      className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white p-2 rounded-full shadow-lg transition-all"
       aria-label="Próximo"
     >
-      <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
+      <ChevronRight className="w-6 h-6 text-blue-600" />
     </button>
   );
 }
 
-function PrevArrow(props: { onClick?: () => void }) {
+function PrevArrow(props: any) {
   const { onClick } = props;
   return (
     <button
-      type="button"
       onClick={onClick}
-      className="!flex items-center justify-center !w-9 !h-9 sm:!w-10 sm:!h-10 !left-2 sm:!left-4 z-10 bg-white/90 hover:bg-white rounded-full shadow-lg transition-all before:!content-none"
+      className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white p-2 rounded-full shadow-lg transition-all"
       aria-label="Anterior"
     >
-      <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
+      <ChevronLeft className="w-6 h-6 text-blue-600" />
     </button>
   );
 }
 
 export function ProjectsCarousel() {
-  const slidesToShow = useSlidesToShow();
-
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow,
+    slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 4000,
     pauseOnHover: true,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1280,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        }
+      }
+    ]
   };
 
   return (
-    <section id="projetos" className="py-10 md:py-24 bg-gray-50 overflow-hidden">
+    <section id="projetos" className="py-16 md:py-24 bg-gray-50">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-3 md:mb-4 text-gray-900">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl mb-4 text-gray-900">
             Nossos Projetos
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
             Conheça alguns dos empreendimentos que transformaram sonhos em realidade
           </p>
         </div>
 
-        <div className="max-w-7xl mx-auto projects-carousel">
-          <Slider key={slidesToShow} {...settings}>
+        <div className="max-w-7xl mx-auto">
+          <Slider {...settings}>
             {projects.map((project) => (
-              <div key={project.id} className="px-2 md:px-3">
-                <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                  <div className="relative h-56 sm:h-64 overflow-hidden">
+              <div key={project.id} className="px-3">
+                <div className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                  <div className="relative h-64 overflow-hidden">
                     <ImageWithFallback
                       src={project.image}
                       alt={project.title}
                       className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
                     />
                   </div>
-                  <div className="p-4 sm:p-6">
-                    <h3 className="text-lg sm:text-xl mb-1 sm:mb-2 text-gray-900 font-semibold">
+                  <div className="p-6">
+                    <h3 className="text-xl mb-2 text-gray-900">
                       {project.title}
                     </h3>
-                    <p className="text-sm text-blue-600 mb-2 sm:mb-3">{project.location}</p>
+                    <p className="text-sm text-blue-600 mb-3">{project.location}</p>
                     <p className="text-gray-600 text-sm leading-relaxed">
                       {project.description}
                     </p>

@@ -24,7 +24,7 @@ export function Contact() {
               (11) 91219-1008
             </a>
             <br />
-            <a href="tel:+551133334444" className="text-blue-100 hover:text-white transition-colors">
+            <a href="tel:+5511333344445" className="text-blue-100 hover:text-white transition-colors">
               (11) 3333-4444
             </a>
           </div>

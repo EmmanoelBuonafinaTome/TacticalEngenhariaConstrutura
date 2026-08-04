@@ -9,10 +9,12 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      <Hero />
-      <ProjectsCarousel />
-      <About />
-      <Contact />
+      <main>
+        <Hero />
+        <ProjectsCarousel />
+        <About />
+        <Contact />
+      </main>
       <Footer />
     </div>
   );

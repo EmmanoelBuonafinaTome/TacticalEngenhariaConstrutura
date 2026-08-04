@@ -79,6 +79,17 @@
 }
 
 @theme inline {
+  --color-petroleum-50: #ecf5f6;
+  --color-petroleum-100: #c8e3e8;
+  --color-petroleum-200: #9cc9d3;
+  --color-petroleum-300: #6aadb9;
+  --color-petroleum-400: #3d8f9e;
+  --color-petroleum-500: #117283;
+  --color-petroleum-600: #0a5c6b;
+  --color-petroleum-700: #064752;
+  --color-petroleum-800: #033340;
+  --color-petroleum-900: #011f28;
+  --color-petroleum-950: #001218;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);

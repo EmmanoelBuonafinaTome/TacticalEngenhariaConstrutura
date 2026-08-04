@@ -35,10 +35,11 @@ export const SOCIAL_LINKS = [
   { label: 'LinkedIn', href: 'https://linkedin.com' },
 ] as const;
 
-export type SectionId = 'projetos' | 'sobre' | 'contato';
+export type SectionId = 'projetos' | 'sobre' | 'steelFrame' | 'contato';
 
 export const NAV_LINKS: { id: SectionId; label: string }[] = [
   { id: 'projetos', label: 'Projetos' },
+  { id: 'steelFrame',  label: 'Steel Frame'},
   { id: 'sobre', label: 'Sobre Nós' },
   { id: 'contato', label: 'Contato' },
 ];

@@ -6,7 +6,7 @@ import steelFrame from '../../imports/steel-frame.jpg';
 
 export function SteelFrame() {
   return (
-    <section id="sobre" className="py-16 md:py-24 bg-white">
+    <section id="steelFrame" className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center max-w-6xl mx-auto">
           <div>

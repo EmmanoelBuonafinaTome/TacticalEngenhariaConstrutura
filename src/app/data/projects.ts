@@ -1,3 +1,8 @@
+import reformaCompleta from '../../imports/reforma-completa.jpg';
+import filtro from '../../imports/filtro.jpg';
+import salaoFestas from '../../imports/salao-festas.jpg';
+import steelFrame from '../../imports/steel-frame.jpg';
+
 export interface Project {
   id: number;
   title: string;
@@ -9,47 +14,38 @@ export interface Project {
 export const PROJECTS: Project[] = [
   {
     id: 1,
-    title: 'Edifício Residencial Horizonte',
+    title: 'Reforma Casa Alto Padrao',
     description:
-      'Complexo residencial de alto padrão com 120 apartamentos, área de lazer completa e localização privilegiada.',
+      'Reforma residencial de alto padrão com soluções personalizadas, acabamentos premium e alto nível de qualidade.',
     image:
-      'https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBjb25zdHJ1Y3Rpb24lMjBidWlsZGluZyUyMGFyY2hpdGVjdHVyZXxlbnwxfHx8fDE3ODA1ODI1NTJ8MA&ixlib=rb-4.1.0&q=80&w=1080',
-    location: 'São Paulo - SP',
+      reformaCompleta,
+    location: 'Bragança Paulista - SP',
   },
   {
     id: 2,
-    title: 'Condomínio Residencial Vila Verde',
+    title: 'Filtro anaeróbio',
     description:
-      'Casas de alto padrão com arquitetura moderna, jardins paisagísticos e infraestrutura completa.',
+      'Projeto e execução de filtro anaeróbio, oferecendo uma solução eficiente e sustentável para o tratamento de efluentes.',
     image:
-      'https://images.unsplash.com/photo-1621511075938-f03482369feb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXNpZGVudGlhbCUyMGNvbnN0cnVjdGlvbiUyMHByb2plY3R8ZW58MXx8fHwxNzgwNjYzMDMzfDA&ixlib=rb-4.1.0&q=80&w=1080',
-    location: 'Campinas - SP',
+      filtro,
+    location: 'Bragança Paulista - SP',
   },
   {
     id: 3,
-    title: 'Centro Empresarial Corporate Tower',
+    title: 'Salão de Festas',
     description:
-      'Torre comercial com 25 andares, tecnologia de ponta e certificação ambiental LEED.',
+      'Projeto completo de salão de festas, oferecendo ambientes funcionais, acabamento refinado e soluções construtivas de alta qualidade.',
     image:
-      'https://images.unsplash.com/photo-1777919393703-ad0a60555274?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb21tZXJjaWFsJTIwYnVpbGRpbmclMjBjb25zdHJ1Y3Rpb24lMjBzaXRlfGVufDF8fHx8MTc4MDY2MzAzNHww&ixlib=rb-4.1.0&q=80&w=1080',
-    location: 'São Paulo - SP',
+      salaoFestas,
+    location: 'Bragança Paulista - SP',
   },
   {
     id: 4,
-    title: 'Residencial Jardim das Flores',
+    title: 'Steel Frame',
     description:
-      'Edifício residencial com 80 unidades, piscina, academia e espaço gourmet.',
+      'Projeto em Steel Frame executado com tecnologia de ponta, proporcionando rapidez na construção, sustentabilidade e alto padrão de qualidade.',
     image:
-      'https://images.unsplash.com/photo-1515263487990-61b07816b324?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBhcGFydG1lbnQlMjBidWlsZGluZyUyMGV4dGVyaW9yfGVufDF8fHx8MTc4MDYxNDYwN3ww&ixlib=rb-4.1.0&q=80&w=1080',
-    location: 'Santos - SP',
-  },
-  {
-    id: 5,
-    title: 'Business Center Innovation',
-    description:
-      'Complexo comercial moderno com salas corporativas, auditório e estacionamento amplo.',
-    image:
-      'https://images.unsplash.com/photo-1621831337128-35676ca30868?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjBidWlsZGluZyUyMGZhY2FkZXxlbnwxfHx8fDE3ODA2NjMwMzR8MA&ixlib=rb-4.1.0&q=80&w=1080',
-    location: 'Ribeirão Preto - SP',
+      steelFrame,
+    location: 'Santo Antonio do Pinha - SP',
   },
 ];
